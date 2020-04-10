@@ -1,0 +1,88 @@
+apiVersion: appsody.dev/v1beta1
+kind: AppsodyApplication
+metadata:
+  annotations:
+    architecture: x86_64
+    authoritative-source-url: registry.access.redhat.com
+    build-date: 2019-10-29T16:44:53.794580
+    commit.image.appsody.dev/author: Denilson Nastacio <dnastaci@us.ibm.com>
+    commit.image.appsody.dev/committer: Denilson Nastacio <dnastaci@us.ibm.com>
+    commit.image.appsody.dev/date: Fri Apr 10 12:21:01 2020 -0400
+    commit.image.appsody.dev/message: first commit
+    commit.stack.appsody.dev/author: kilnerm <38245247+kilnerm@users.noreply.github.com>
+    commit.stack.appsody.dev/committer: GitHub <noreply@github.com>
+    commit.stack.appsody.dev/contextDir: /incubator/java-openliberty
+    commit.stack.appsody.dev/date: Fri Apr 3 09:22:57 2020 +0100
+    commit.stack.appsody.dev/message: 'Merge pull request #316 from groeges/release-0.6'
+    description: This image is the Kabanero development container for the java-openliberty
+      stack
+    distribution-scope: public
+    image.opencontainers.org/created: "2020-04-10T16:08:36-04:00"
+    image.opencontainers.org/documentation: https://github.com/think-2020-cp4a/service-c
+    image.opencontainers.org/revision: 2d53939cf4aefcb97461074dc0f2fd95ca820802-modified
+    image.opencontainers.org/source: https://github.com/think-2020-cp4a/service-c/tree/master
+    image.opencontainers.org/url: https://github.com/think-2020-cp4a/service-c
+    k8s.io/description: The Universal Base Image is designed and engineered to be
+      the base layer for all of your containerized applications, middleware and utilities.
+      This base image is freely redistributable, but Red Hat only supports Red Hat
+      technologies through subscriptions for Red Hat products. This image is maintained
+      by Red Hat and updated regularly.
+    k8s.io/display-name: Red Hat Universal Base Image 8
+    maintainer: Red Hat, Inc.
+    name: kabanero/java-openliberty
+    openshift.io/expose-services: ""
+    openshift.io/tags: base rhel8
+    redhat.com/build-host: cpt-1002.osbs.prod.upshift.rdu2.redhat.com
+    redhat.com/component: ubi8-container
+    redhat.com/license_terms: https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI
+    release: "277"
+    stack.appsody.dev/authors: Mike Andrasak <andrasak@us.ibm.com>, Andy Mauer <ajmauer@us.ibm.com>,
+      Scott Kurz <skurz@us.ibm.com>, Adam Wisniewski <awisniew@us.ibm.com>
+    stack.appsody.dev/configured: docker.io/kabanerobeta/java-openliberty:0.2
+    stack.appsody.dev/created: "2020-04-03T08:33:01Z"
+    stack.appsody.dev/description: Open Liberty & OpenJ9 using Maven
+    stack.appsody.dev/documentation: https://github.com/kabanero-io/collections/tree/master/incubator/java-openliberty/README.md
+    stack.appsody.dev/licenses: Apache-2.0
+    stack.appsody.dev/revision: 27a3254c80e6c5367a76e6099c2e18b393d15841
+    stack.appsody.dev/source: https://github.com/kabanero-io/collections/tree/master/incubator/java-openliberty/image
+    stack.appsody.dev/tag: docker.io/kabanerobeta/java-openliberty:0.2.3
+    stack.appsody.dev/title: Open Liberty
+    stack.appsody.dev/url: https://github.com/kabanero-io/collections/tree/master/incubator/java-openliberty
+    summary: Image for Kabanero java-openliberty development
+    url: https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/images/8.1-277
+    vcs-ref: c42933bcdbf9f1c232e981a5e40de257c3534c8e
+    vcs-type: git
+    vendor: Kabanero
+    version: 0.2.3
+  creationTimestamp: null
+  labels:
+    image.opencontainers.org/title: service-c
+    stack.appsody.dev/id: java-openliberty
+    stack.appsody.dev/version: 0.2.3
+  name: service-c
+spec:
+  applicationImage: think20cp4a/service-c:1.0.0
+  createKnativeService: false
+  expose: true
+  livenessProbe:
+    failureThreshold: 12
+    httpGet:
+      path: /health/live
+      port: 9080
+    initialDelaySeconds: 5
+    periodSeconds: 2
+  readinessProbe:
+    failureThreshold: 12
+    httpGet:
+      path: /health/ready
+      port: 9080
+    initialDelaySeconds: 5
+    periodSeconds: 2
+    timeoutSeconds: 1
+  service:
+    annotations:
+      prometheus.io/scrape: "true"
+    port: 9080
+    type: NodePort
+  stack: java-openliberty
+  version: 1.0.0

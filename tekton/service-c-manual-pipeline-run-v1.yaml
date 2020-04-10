@@ -1,0 +1,50 @@
+---
+apiVersion: v1
+items:
+- apiVersion: tekton.dev/v1alpha1
+  kind: PipelineResource
+  metadata:
+    name: docker-image-service-c-v1
+  spec:
+    params:
+    - name: url
+      value: image-registry.openshift-image-registry.svc:5000/cloudlab/service-c
+    type: image
+- apiVersion: tekton.dev/v1alpha1
+  kind: PipelineResource
+  metadata:
+    name: git-source-service-c-v1
+  spec:
+    params:
+    - name: revision
+      value: v1
+    - name: url
+      value: https://github.com/think-2020-cp4a/service-c.git
+    type: git
+kind: List
+---
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: nodejs-pipeline-run-v1
+spec:
+  params:
+  - name: event-type
+    value: push
+  - name: event-ref
+    value: refs/heads/master
+  - name: docker-imagename
+    value: service-c
+  - name: docker-imagetag
+    value: 1.0.0
+  serviceAccountName: kabanero-pipeline
+  timeout: "1h0m0s"
+  pipelineRef:
+    name: nodejs-express-build-deploy-pl
+  resources:
+    - name: git-source
+      resourceRef:
+        name: git-source-service-c-v1
+    - name: docker-image
+      resourceRef:
+        name: docker-image-service-c-v1
