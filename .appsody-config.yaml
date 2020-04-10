@@ -1,0 +1,3 @@
+id: "20200410103823.85492800"
+project-name: service-c
+stack: docker.io/kabanerobeta/java-openliberty:0.2
