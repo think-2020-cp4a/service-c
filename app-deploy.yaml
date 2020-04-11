@@ -60,6 +60,7 @@ metadata:
     stack.appsody.dev/id: java-openliberty
     stack.appsody.dev/version: 0.2.3
   name: service-c
+  namespace: cloudlab
 spec:
   applicationImage: think20cp4a/service-c:1.0.0
   createKnativeService: false
